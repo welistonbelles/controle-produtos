@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <div class="container account">
+        <form class="form-signin" method="post" autocomplete="off">
+            {% csrf_token %}
+            <img class="mb-4" src="{% static 'images/logo.png' %}" alt="" width="225" height="97">
+            <h1 class="h3 mb-3 font-weight-bold">Informe seus dados</h1>
+            
+            {% if form.errors %} 
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <p class="errornote" style="color: red" data-toggle="popover" title="Atenção"  data-content="{{ error }}">
+                            {% if form.errors.items|length == 1 %}
+                                Por favor, corrija esse erro.
+                            {% else %}
+                                Por favor, corrija os erros abaixos.
+                            {% endif %}
+                        </p>
+                        <script>
+                            $(function () {
+                                $('[data-toggle="popover"]').popover('show')
+                            })
+                        </script>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+            <label for="username" class="sr-only">E-mail</label>
+            <input type="email" id="username" name="username" class="form-control" placeholder="Informe seu e-mail" required autofocus>
+            <label for="password" class="sr-only">Senha</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Informe sua senha" required>
+            <button class="btn btn-lg btn-primary btn-block" id="login" type="submit">Acessar</button>
+            
+            <p class="mt-5 mb-3 text-muted">&copy: {% now 'Y'%}</p>
+        </form>
+    </div>
+{% endblock %}

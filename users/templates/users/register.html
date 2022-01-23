@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <div class="container account">
+        <div class="register">
+            <form class="form-signin" id="registerForm" method="post" autocomplete="off">
+                {% csrf_token %}
+                <h1 class="h3 mb-3 font-weight-bold">Cadastro de usuário</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="first_name" class="sr-only">Nome</label>
+                        <input type="text" id="first_name" name="first_name" class="form-control" onkeypress="return onlyString(event, this)" max-length="100" placeholder="Informe seu primeiro nome" required autofocus>
+                    </div>
+                    <div class="col-6">
+                        <label for="last_name" class="sr-only">Sobrenome</label>
+                        <input type="text" id="last_name" name="last_name" class="form-control" max-length="100" onkeypress="return onlyString(event, this)" placeholder="Informe seu sobrenome" required>
+                    </div>
+                    
+                    <div class="col-12">
+                        <label for="email" class="sr-only">E-mail</label>
+                        <input type="email" id="email" name="email" class="form-control" max-length="100" placeholder="Informe seu e-mail" required>
+                    </div>
+                    
+                    <div class="col-12">
+                        <label for="password1" class="sr-only">Senha</label>
+                        <input type="password" id="password1" name="password1" class="form-control" placeholder="Informe sua senha" required>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="password2" class="sr-only">Senha</label>
+                        <input type="password" id="password2" name="password2" class="form-control" placeholder="Confirme sua senha" required>
+                    </div>
+
+                    <div class="col-6 cep">
+                        <label for="cep" class="sr-only">Cep</label>
+                        <input type="text" id="cep" name="cep" class="form-control" size="10" maxlength="9" placeholder="Digite seu CEP" required>
+                    </div>
+
+                    <div class="col-6">
+                        <label for="endereco" class="sr-only">Cep</label>
+                        <input type="text" id="endereco" name="endereco" class="form-control" maxlength="100" placeholder="Digite seu endereço" required>
+                    </div>
+                    
+                    <div class="col-6">
+                        <label for="cidade" class="sr-only">Cep</label>
+                        <input type="text" id="cidade" name="cidade" class="form-control" maxlength="100" onkeypress="return onlyString(event, this)" placeholder="Cidade" required>
+                    </div>
+                    
+                    <div class="col-6">
+                        <label for="estado" class="sr-only">Cep</label>
+                        <input type="text" id="estado" name="estado" class="form-control" maxlength="2" onkeypress="return onlyString(event, this)" placeholder="Estado" required>
+                    </div>
+
+                    <div class="col-6">
+                        <label for="numero" class="sr-only">Cep</label>
+                        <input type="number" id="numero" name="numero" class="form-control" placeholder="Número" required>
+                    </div>
+                    
+                    <div class="col-6">
+                        <label for="bairro" class="sr-only">Cep</label>
+                        <input type="text" id="bairro" name="bairro" class="form-control" maxlength="100" placeholder="Bairro" required>
+                    </div>
+                    
+                    <div class="col-12">
+                        <label for="complemento" class="sr-only">Cep</label>
+                        <input type="text" id="complemento" name="complemento" class="form-control" maxlength="100" placeholder="Complemento" required>
+                    </div>
+                    <div class="col-5">
+                        <a class="btn btn-lg btn-secondary btn-block" href="{% url 'index' %}">Voltar</a>
+                    </div>
+                    <div class="col-2"></div>
+                    <div class="col-5">
+                        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="registerUser()">Cadastrar</button>
+                    </div>
+                </div>
+                <p class="mt-5 mb-3 text-muted">&copy: {% now 'Y'%}</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPT -->
+
+    <script>
+        
+    </script>
+{% endblock %}

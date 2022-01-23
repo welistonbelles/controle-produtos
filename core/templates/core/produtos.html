@@ -1,0 +1,77 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
+
+{% block title %} 
+    <title>Produtos</title>
+{% endblock %}
+
+{% block header %}
+    <a href="{% url 'dashboard' %}" class="home">Home</a>
+{% endblock %}
+
+{% block content %}
+    <div class="container products">
+        <div class="actions">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#registerModal"> <i class="fas fa-plus white"></i> Cadastrar Produto</button>
+        </div>
+        <div class="products-table" style="height: 80%;">
+            <table class="table table-dark">
+                <thead>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</i></th>
+                    <th scope="col">Preço</i></th>
+                    <th scope="col">Estoque</i></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </thead>
+                <tbody>
+                    <script>getProducts()</script>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="registerModalLabel">Cadastrar Produto</h5>
+                  <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                      {% csrf_token %}
+                    <div class="mb-3">
+                      <label for="name" class="col-form-label">Nome:</label>
+                      <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="col-form-label">Preço:</label>
+                        <input type="number" min="0" max="99999" class="form-control" id="price" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="stock" class="col-form-label">Estoque:</label>
+                        <input type="number" min="0" class="form-control" id="stock" required>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="registerProduct()">Cadastrar</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+         
+        </div>
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+         
+        </div>
+        
+    </div>
+{% endblock %}

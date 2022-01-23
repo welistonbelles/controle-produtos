@@ -1,0 +1,58 @@
+{% load static %}
+{% load bootstrap4 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/25828b76a5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/functions.js' %}"></script>
+    {% block title %} {% endblock %}
+</head>
+<body>
+    <header>
+        <div class="home">
+            {% block header %} {% endblock %}
+        </div>
+        <div class="login">
+            {% if not user.is_anonymous %}
+                <a href="{% url 'produtos' %}" class="produtos">Produtos</a>
+                <a href="{% url 'logout' %}" class="logout">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="login">Login</a>
+                <a href="{% url 'register' %}" class="cadastrar">Cadastrar</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <div class="app">
+        {% block content %}
+    
+        {% endblock %}
+    </div>
+
+    <div id="toast-area" aria-live="polite" aria-atomic="true" style="position: fixed; min-height: 200px; top: 0; right: 0; z-index: 4;">
+        <!-- Position it -->
+        
+    </div>
+
+    <footer>
+        Copyright: Weliston Belles
+    </footer>
+
+
+    <script>
+        var now = new Date
+        var footer = document.querySelector("footer")
+        footer.innerText = footer.innerText + "\n@" + now.getFullYear()
+    </script>
+</body>
+{% bootstrap_javascript jquery='full' %} 
+</html>
